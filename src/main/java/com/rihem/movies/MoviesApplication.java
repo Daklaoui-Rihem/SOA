@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
+import com.rihem.movies.entities.Genre;
 import com.rihem.movies.entities.Movie;
 
 @SpringBootApplication
@@ -18,8 +19,8 @@ public class MoviesApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-		repositoryRestConfiguration.exposeIdsFor(Movie.class);
-	}
+public void run(String... args) throws Exception {
+    repositoryRestConfiguration.exposeIdsFor(Movie.class, Genre.class);
+}
 
 }

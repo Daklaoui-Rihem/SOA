@@ -1,6 +1,9 @@
 package com.rihem.movies.restcontrollers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +22,13 @@ public class GenreRESTController {
     GenreRepository genreRepository;
     
     @RequestMapping(method=RequestMethod.GET)
-    public List<Genre> getAllGenres() {
-        return genreRepository.findAll();
+    public Map<String, Object> getAllGenres() {
+        List<Genre> genres = genreRepository.findAll();
+        Map<String, Object> response = new HashMap<>();
+        Map<String, List<Genre>> embedded = new HashMap<>();
+        embedded.put("genres", genres);
+        response.put("_embedded", embedded);
+        return response;
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
