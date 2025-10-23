@@ -51,4 +51,14 @@ public class MovieRESTController {
         return movieService.findByGenreIdGen(idGenre);
     }
 
+    @RequestMapping(value = "/movsgenre/{idGenre}", method = RequestMethod.GET)
+    public List<Movie> findByGenreIdGenre(@PathVariable("idGenre") Long idGenre) {
+        return movieService.findByGenreIdGen(idGenre);
+    }
+
+    @RequestMapping(value = "/movsByName/{nom}", method = RequestMethod.GET)
+    public List<Movie> findByNomMovieContains(@PathVariable("nom") String nom) {
+        return movieService.findByNomMovieContains(nom);
+    }
+
 }
