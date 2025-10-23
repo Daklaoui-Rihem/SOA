@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +36,15 @@ public class GenreRESTController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Genre getGenreById(@PathVariable("id") Long id) {
         return genreRepository.findById(id).get();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Genre createGenre(@RequestBody Genre genre) {
+        return genreRepository.save(genre);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public Genre updateGenre(@RequestBody Genre genre) {
+        return genreRepository.save(genre);
     }
 }
